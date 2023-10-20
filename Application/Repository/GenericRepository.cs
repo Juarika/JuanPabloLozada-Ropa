@@ -50,6 +50,18 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         _context.Set<T>().RemoveRange(entities);
     }
+    public virtual async Task<IEnumerable<T>> GetWithPagination(int pageNumber, int pageSize)
+    {
+        // Calcular el índice de inicio en base al número de página y tamaño de página.
+        int startIndex = (pageNumber - 1) * pageSize;
+
+        var paginatedEntities = await _context.Set<T>()
+            .Skip(startIndex)
+            .Take(pageSize)
+            .ToListAsync();
+
+        return paginatedEntities;
+    }
     public virtual void Update(T entity)
     {
         _context.Set<T>()

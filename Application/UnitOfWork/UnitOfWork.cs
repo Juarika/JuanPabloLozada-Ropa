@@ -32,6 +32,10 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private IStatusType _statusTypes;
     private ISupplier _suppliers;
     private ISupplierInput _supplierInputs;
+    private IInput _inputs;
+    private IInventary _inventories;
+    private IInventarySize _inventarySizes;
+    private IOrden _ordens;
     public UnitOfWork(SkelettonContext context)
     {
         _context = context;
@@ -311,7 +315,50 @@ public class UnitOfWork : IUnitOfWork, IDisposable
             return _supplierInputs;
         }
     }
-
+    public IInput Inputs
+    {
+        get
+        {
+            if (_inputs == null)
+            {
+                _inputs = new InputRepository(_context);
+            }
+            return _inputs;
+        }
+    }
+    public IInventary Inventories
+    {
+        get
+        {
+            if (_inventories == null)
+            {
+                _inventories = new InventaryRepository(_context);
+            }
+            return _inventories;
+        }
+    }
+    public IInventarySize InventarySizes
+    {
+        get
+        {
+            if (_inventarySizes == null)
+            {
+                _inventarySizes = new InventarySizeRepository(_context);
+            }
+            return _inventarySizes;
+        }
+    }
+    public IOrden Ordens
+    {
+        get
+        {
+            if (_ordens == null)
+            {
+                _ordens = new OrdenRepository(_context);
+            }
+            return _ordens;
+        }
+    }
     public async Task<int> SaveAsync()
     {
         return await _context.SaveChangesAsync();

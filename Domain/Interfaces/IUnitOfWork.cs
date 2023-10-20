@@ -27,5 +27,9 @@ public interface IUnitOfWork
     IStatusType StatusTypes { get; } 
     ISupplier Suppliers { get; } 
     ISupplierInput SupplierInputs { get; } 
+    IInput Inputs { get; } 
+    IInventary Inventories { get; } 
+    IInventarySize InventarySizes { get; } 
+    IOrden Ordens { get; } 
     Task<int> SaveAsync();
 }

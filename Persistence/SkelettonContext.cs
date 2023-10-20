@@ -24,6 +24,7 @@ public class SkelettonContext : DbContext
     public DbSet<DressInput> DressInputs { get; set; }
     public DbSet<Employee> Employees { get; set; }
     public DbSet<Gender> Genders { get; set; }
+    public DbSet<Inventary> Inventories { get; set; }
     public DbSet<PaymentMethod> PaymentMethods { get; set; }
     public DbSet<Position> Positions { get; set; }
     public DbSet<ProtectionType> ProtectionTypes { get; set; }
