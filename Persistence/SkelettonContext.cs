@@ -25,6 +25,7 @@ public class SkelettonContext : DbContext
     public DbSet<Employee> Employees { get; set; }
     public DbSet<Gender> Genders { get; set; }
     public DbSet<Inventary> Inventories { get; set; }
+    public DbSet<Input> Inputs { get; set; }
     public DbSet<PaymentMethod> PaymentMethods { get; set; }
     public DbSet<Position> Positions { get; set; }
     public DbSet<ProtectionType> ProtectionTypes { get; set; }
@@ -34,6 +35,7 @@ public class SkelettonContext : DbContext
     public DbSet<StatusType> StatusTypes { get; set; }
     public DbSet<Supplier> Suppliers { get; set; }
     public DbSet<SupplierInput> SupplierInputs { get; set; }
+    public DbSet<Orden> Ordens { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

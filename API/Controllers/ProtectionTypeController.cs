@@ -86,4 +86,16 @@ public class ProtectionTypeController : ApiBaseController
         await _unitOfWork.SaveAsync();
         return NoContent();
     }
+
+    /* Listar las prendas agrupadas por el tipo de protección. */
+    [HttpGet("ProtectionType")]
+    [MapToApiVersion("1.0")]
+    // [Authorize(Roles = "Administrator, Employee")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<object> GetForSpecie([FromQuery] Params queryParams)
+    {
+        var paginated = await _unitOfWork.ProtectionTypes.GetWithPagination(queryParams.PageIndex, queryParams.PageSize);
+        return _mapper.Map<List<ProtectionTypeDto>>(paginated);
+    }
 }

@@ -86,4 +86,17 @@ public class InputController : ApiBaseController
         await _unitOfWork.SaveAsync();
         return NoContent();
     }
+
+    /* Listar los insumos que son vendidos por un determinado proveedor. El usuario debe ingresar el Nit de proveedor. */
+    [HttpGet("Supplier")]
+    [MapToApiVersion("1.0")]
+    // [Authorize(Roles = "Administrator, Employee")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<object>>> GetForSupplier([FromQuery] Params _param)
+    {
+        var data = await _unitOfWork.Inputs.GetForSupplier(_param.Search);
+        var search = _mapper.Map<List<InputDto>>(data);
+        return Ok(data);
+    }
 }

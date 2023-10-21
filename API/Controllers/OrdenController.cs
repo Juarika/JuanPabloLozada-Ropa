@@ -86,4 +86,31 @@ public class OrdenController : ApiBaseController
         await _unitOfWork.SaveAsync();
         return NoContent();
     }
+
+    /* Listar las prendas de una orden de producción cuyo estado sea en producción. El usuario debe ingresar el número de orden de producción. */
+    [HttpGet("Status")]
+    [MapToApiVersion("1.1")]
+    // [Authorize(Roles = "Administrator, Employee")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<OrdenDto>>> GetForStatus([FromQuery] Params _param)
+    {
+        var data = await _unitOfWork.Ordens.GetForStatus(_param.Search);
+        var search = _mapper.Map<List<OrdenDto>>(data);
+        return search;
+    }
+    /* Listar las ordenes de producción que pertenecen a un cliente especifico. El usuario debe ingresar el IdCliente y debe obtener la siguiente información:
+        1. IdCliente, Nombre, Municipio donde se encuentra ubicado.
+        2. Nro de orden de producción, fecha y el estado de la orden de producción (Se debe mostrar la descripción del estado, código del estado, valor total de la orden de producción.
+        3. Detalle de orden: Nombre de la prenda, Código de la prenda, Cantidad, Valor total en pesos y en dólares. */
+    [HttpGet("AllOrdens")]
+    [MapToApiVersion("1.1")]
+    // [Authorize(Roles = "Administrator, Employee")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IEnumerable<object>> GetOrdens()
+    {
+        var data = await _unitOfWork.Ordens.GetOrdens();
+        return data;
+    }
 }

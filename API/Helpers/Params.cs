@@ -3,6 +3,7 @@ namespace API.Helpers;
 public class Params
 {
     private int _pageSize = 5;
+    private int _id;
     private const int MaxPageSize = 50;
     private int _pageIndex = 1;
     private string _search;
@@ -23,5 +24,10 @@ public class Params
     {
         get => _search;
         set => _search = (!String.IsNullOrEmpty(value)) ? value.ToLower() : "";
+    }
+    public int Id
+    {
+        get => _id;
+        set => _id = (value < 1) ? 1 : value;
     }
 }

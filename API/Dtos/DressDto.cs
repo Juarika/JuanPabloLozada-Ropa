@@ -11,3 +11,9 @@ public class DressDto
     public int ProtectionTypeId { get; set; }
     public int GenderId { get; set; }
 }
+public class DressWithTotalDto
+{
+    public string Name { get; set; }
+    public int Total { get; set; }
+    public ICollection<InputNameDto> Inputs { get; set; }
+}

@@ -12,4 +12,5 @@ public class SupplierDto
     public int PersonTypeId { get; set; }
     [Required]
     public int CityId { get; set; }
+    public ICollection<InputDto> Inputs { get; set; }
 }

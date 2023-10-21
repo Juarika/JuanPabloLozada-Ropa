@@ -86,4 +86,17 @@ public class DressController : ApiBaseController
         await _unitOfWork.SaveAsync();
         return NoContent();
     }
+
+    /* Listar los insumos de una prenda y calcular cuanto cuesta producir una prenda especifica. El costo de la prenda dependerá de la cantidad de insumos que sean necesarios para la producción de la misma. El usuario debe ingresar en Id de la prenda. */
+    [HttpGet("TotalInputs")]
+    [MapToApiVersion("1.0")]
+    // [Authorize(Roles = "Administrator, Employee")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<object>>> TotalInputs([FromQuery] Params _param)
+    {
+        var data = await _unitOfWork.Dresses.TotalInputs(_param.Id);
+        // var search = _mapper.Map<List<DressWithTotalDto>>(data);
+        return Ok(data);
+    }
 }

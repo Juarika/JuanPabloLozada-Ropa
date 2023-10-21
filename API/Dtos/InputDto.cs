@@ -9,3 +9,8 @@ public class InputDto
     public int MinStock { get; set; }
     public int MaxStock { get; set; }
 }
+public class InputNameDto
+{
+    public string Name { get; set; }
+    public decimal Value { get; set; }    
+}
