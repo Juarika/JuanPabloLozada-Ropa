@@ -21,7 +21,7 @@ public class OrdenRepository : GenericRepository<Orden>, IOrden
             .ToListAsync();
     }
 
-    public async Task<IEnumerable<object>> GetOrdens()
+    public async Task<IEnumerable<object>> GetOrdens(int _id)
     {
         var ordens = await _context.Ordens.ToListAsync();
         var cities = await _context.Cities.ToListAsync();
@@ -38,6 +38,7 @@ public class OrdenRepository : GenericRepository<Orden>, IOrden
                             join detailOrder in detailOrders on orden.Id equals detailOrder.OrdenId
                             join dress in dresses on detailOrder.DressId equals dress.Id
                             select client)
+                            .Where(s => s.Id == _id)
                                 .Select(s => new
                                 {
                                     ClientId = s.Id,

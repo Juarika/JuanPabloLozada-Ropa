@@ -166,6 +166,22 @@ X-Version : 1.1
 ```
 http://localhost:5016/api/Input/Supplier?Search=[Nit]
 ```
+#### Respuesta
+```
+[
+  {
+    "name": "Nose",
+    "value": 100.00000000000000000000000000,
+    "minStock": 10,
+    "maxStock": 11,
+    "dresses": [],
+    "dressInputs": null,
+    "suppliers": [],
+    "supplierInputs": null,
+    "id": 1
+  }
+]
+```
 
 ## Autor
 - Juan Pablo Lozada

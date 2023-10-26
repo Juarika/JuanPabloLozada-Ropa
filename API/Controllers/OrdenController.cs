@@ -108,9 +108,9 @@ public class OrdenController : ApiBaseController
     // [Authorize(Roles = "Administrator, Employee")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IEnumerable<object>> GetOrdens()
+    public async Task<IEnumerable<object>> GetOrdens([FromQuery] Params _param)
     {
-        var data = await _unitOfWork.Ordens.GetOrdens();
+        var data = await _unitOfWork.Ordens.GetOrdens(_param.Id);
         return data;
     }
 }
